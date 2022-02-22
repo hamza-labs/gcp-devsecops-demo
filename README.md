@@ -1,4 +1,5 @@
 # Welcome to this quick GCP DevSecoPs Demo! 
+<img src="https://github.com/hamza-labs/gcp-devops-demo/blob/main/src/main/resources/static/resources/images/devsecops.png?raw=true" width="650">
 
 ### Before you begin, you will need this! 
 
