@@ -7,6 +7,7 @@
 
 ### Step 1: Explore how you can secure your app at the Build Stage
 
+- https://cloud.google.com/artifact-registry/docs/analysis
 
 ### Step 2: Explore how you can secure your app at the Deploy Stage
 
