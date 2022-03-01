@@ -8,7 +8,7 @@
 Open your Cloud Shell Editor shell.cloud.google.com 
 New Terminal 
 cd && mkdir projects && cd projects
-gcloud source repos clone gcp-devops-demo --project=hamzalabs
+gcloud source repos clone gcp-devops-demo --project=YOUR_PROJECT_ID
 cd gcp-devops-demo
 git add . && git commit -m "Commit Code" && git push
 ```
@@ -73,7 +73,7 @@ steps:
 - name: 'gcr.io/k8s-skaffold/pack'
   entrypoint: 'pack'
   args: ['build', '--builder=gcr.io/buildpacks/builder', 
-  '--publish', 'us-central1-docker.pkg.dev/hamzalabs/petclinic-artifact-repo/petclinic:latest']
+  '--publish', 'us-central1-docker.pkg.dev/YOUR_PROJECT_ID/petclinic-artifact-repo/petclinic:latest']
 ```
 
 ```
@@ -100,9 +100,9 @@ nano cloudbuild.yaml // insert this code to deploy the app using cloud build to 
 # Deploy your app using Cloud Build to Google Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 'deploy', 'petclinic', 
-  '--image', 'us-central1-docker.pkg.dev/hamzalabs/petclinic-artifact-repo/petclinic:latest',
+  '--image', 'us-central1-docker.pkg.dev/YOUR_PROJECT_ID/petclinic-artifact-repo/petclinic:latest',
   '--region', 'us-central1', '--allow-unauthenticated', '--cpu=2', '--memory=512M',
-  '--service-account', 'petclinic@hamzalabs.iam.gserviceaccount.com', 
+  '--service-account', 'petclinic@YOUR_PROJECT_ID.iam.gserviceaccount.com', 
   '--update-secrets= petclinic-db-instance-connection-name=petclinic-db-instance-connection-name:latest',
   '--update-secrets= petclinic-db-name=petclinic-db-name:latest',
   '--update-secrets= petclinic-db-username=petclinic-db-username:latest',
@@ -133,7 +133,7 @@ git add . && git commit -m "Commit Code" && git push google master
 ```
 gcloud resource-manager org-policies allow run.allowedBinaryAuthorizationPolicies \
   default \
-  --project=hamzalabs
+  --project=YOUR_PROJECT_ID
 ```
 
 - Second, use the built-by-cloud-build attestor to only deploy the images built by Cloud Build.
@@ -157,8 +157,8 @@ docker push us-central1-docker.pkg.dev/hamza-labs-1/petclinic/petclinic:bin-auth
 
 - Deploy the new image to Cloud Run
 ```
-gcloud run deploy petclinic --image us-central1-docker.pkg.dev/hamzalabs/petclinic-artifact-repo/petclinic:bin-auth --region us-central1 --allow-unauthenticated --cpu=2 --memory=512M
-  --service-account petclinic@hamzalabs.iam.gserviceaccount.com --update-secrets= petclinic-db-instance-connection-name=petclinic-db-instance-connection-name:latest --update-secrets= petclinic-db-name=petclinic-db-name:latest --update-secrets= petclinic-db-username=petclinic-db-username:latest --update-secrets= petclinic-db-password=petclinic-db-password:latest
+gcloud run deploy petclinic --image us-central1-docker.pkg.dev/YOUR_PROJECT_ID/petclinic-artifact-repo/petclinic:bin-auth --region us-central1 --allow-unauthenticated --cpu=2 --memory=512M
+  --service-account petclinic@YOUR_PROJECT_ID.iam.gserviceaccount.com --update-secrets= petclinic-db-instance-connection-name=petclinic-db-instance-connection-name:latest --update-secrets= petclinic-db-name=petclinic-db-name:latest --update-secrets= petclinic-db-username=petclinic-db-username:latest --update-secrets= petclinic-db-password=petclinic-db-password:latest
 ```
 
 - For more about how to use Binary Authorization and Container registry scanning
