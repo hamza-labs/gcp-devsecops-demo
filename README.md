@@ -79,7 +79,7 @@ steps:
 ```
 gcloud builds submit --config=cloudbuild.yaml
 ```
-### Step 4: Deploy our App to Cloud Run using CloudBuild 
+### Step 3: Deploy our App to Cloud Run using CloudBuild 
 - Create a Service Account petclinic with Cloud SQL Client Permission! 
 ```
 gcloud iam service-accounts create SERVICE_ACCOUNT_ID \
